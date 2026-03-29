@@ -1,5 +1,13 @@
+# Application configuration, etc
+app.config
+Zone4-data-*
+
+# VSCode
+.vscode
+
 # Compiled class file
 *.class
+target
 
 # Log file
 *.log
