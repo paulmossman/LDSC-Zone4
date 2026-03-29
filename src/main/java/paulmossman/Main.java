@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import paulmossman.deltas.Delta;
+import paulmossman.deltas.Registration;
 import paulmossman.csv.base.TmpBaseCsvRow;
 import paulmossman.csv_output.CsvClubBoatList;
 import paulmossman.csv_output.CsvKeelboatList;
@@ -65,6 +67,8 @@ public class Main {
 
       //Util.printMembersWhoJoinedBefore2021(allRegistrantRows, out);
 
+      List<Registration> didNotReturnRegistrations = Delta.getRegistrationsWhoDidNotReturn(yearInt);
+      System.out.printf("Number of registrations from last year that have not (yet) registered for this year: %d\n", didNotReturnRegistrations.size());
    }
 
    public static List<? extends TmpBaseCsvRow> getNewFullMemberRows(List<? extends TmpBaseCsvRow> CSVRows) {

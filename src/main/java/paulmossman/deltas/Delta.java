@@ -34,17 +34,21 @@ public class Delta {
             .sorted().collect(Collectors.toList());
    }
 
-   public static void printRegistrationsWhoDidNotReturn(int year) throws IOException {
+   public static List<Registration> getRegistrationsWhoDidNotReturn(int year) throws IOException{
       List<? extends TmpBaseCsvRow> subsequent = Util.getAllRegistrantsByYear(year);
       int previousYear = year - 1;
       List<? extends TmpBaseCsvRow> previous = Util.getAllRegistrantsByYear(previousYear);
       if (previous == null) {
          System.err.printf("Error: Cannot load year %d.\n", previousYear);
-         return;
+         return null;
       }
 
-      List<Registration> didNotReturnRegistrations = findRegistrationsFromPreviousThatAreNotInSubsequentWrapper(
-            previous, subsequent);
+      return findRegistrationsFromPreviousThatAreNotInSubsequentWrapper(previous, subsequent);
+   }
+   
+   public static void printRegistrationsWhoDidNotReturn(int year) throws IOException {
+
+      List<Registration> didNotReturnRegistrations = getRegistrationsWhoDidNotReturn(year);
 
       System.out.printf("Did not return in %d:\n", year);
       for (Registration r : didNotReturnRegistrations) {
