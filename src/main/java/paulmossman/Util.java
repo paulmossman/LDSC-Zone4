@@ -93,8 +93,6 @@ public class Util {
     String packageName = "paulmossman.csv.y" + String.format("%04d", year);
     String className = packageName + ".CsvAllRegistrants";
     
-   System.err.println("PWM className: " + className);
-
     try {
         Class<?> csvClass = Class.forName(className);
         // Get the singleton instance (assuming get() is static)
