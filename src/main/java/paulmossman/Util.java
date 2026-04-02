@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import paulmossman.csv.base.TmpBaseCsvRow;
+import paulmossman.deltas.Delta;
 import paulmossman.deltas.Registration;
 
 import com.opencsv.CSVReader;
@@ -422,7 +423,7 @@ public class Util {
       out.println("");
    }
 
-   public static void printStatistics(List<? extends TmpBaseCsvRow> allRegistrantRows, PrintStream out, int year) {
+   public static void printStatistics(List<? extends TmpBaseCsvRow> allRegistrantRows, PrintStream out, int year) throws IOException {
 
       out.println("Updated: " + getFormttedDate());
       out.println("");
@@ -436,6 +437,10 @@ public class Util {
       out.println();
       out.println("   Total (Full+YA) Registrations with Club Boat access: "
             + getOneRowForEachClubBoatAccessMembershipCart(allRegistrantRows).size());
+      out.println();
+
+      List<Registration> didNotReturnRegistrations = Delta.getRegistrationsWhoDidNotReturn(year);
+      out.println("Number of registrations from last season that have not (yet) registered for this season: " + didNotReturnRegistrations.size());
       out.println();
 
       // People

@@ -40,6 +40,7 @@ public class Main {
 
       Util.printStatistics(allRegistrantRows, out, yearInt);
 
+
       // Util.printYouthMemberAgeGroupTotals(allRegistrantRows, System.out);
 
       out.close();
@@ -58,7 +59,7 @@ public class Main {
       CsvNewMemberWelcome.builder().build().generateTodos(allRegistrantRows, dataDir, true);
       CsvClubBoatList.builder().build().generateTodos(allRegistrantRows, dataDir);
       CsvKeelboatList.builder().build().generateTodos(allRegistrantRows, dataDir);
-//
+
 //      generateRegistrationNumbersOverTimeCSV(allRegistrantRows);
 //
 
@@ -67,8 +68,8 @@ public class Main {
 
       //Util.printMembersWhoJoinedBefore2021(allRegistrantRows, out);
 
-      List<Registration> didNotReturnRegistrations = Delta.getRegistrationsWhoDidNotReturn(yearInt);
-      System.out.printf("Number of registrations from last year that have not (yet) registered for this year: %d\n", didNotReturnRegistrations.size());
+   
+   
    }
 
    public static List<? extends TmpBaseCsvRow> getNewFullMemberRows(List<? extends TmpBaseCsvRow> CSVRows) {
