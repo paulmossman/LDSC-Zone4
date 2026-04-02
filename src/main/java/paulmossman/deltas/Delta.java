@@ -48,6 +48,8 @@ public class Delta {
    
    public static void printRegistrationsWhoDidNotReturn(int year) throws IOException {
 
+      int previousYear = year - 1;
+
       List<Registration> didNotReturnRegistrations = getRegistrationsWhoDidNotReturn(year);
 
       System.out.printf("Did not return in %d:\n", year);
