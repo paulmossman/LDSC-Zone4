@@ -1,4 +1,4 @@
-package paulmossman.deltas;
+package paulmossman.registration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 
 import paulmossman.Util;
 import paulmossman.csv.base.TmpBaseCsvRow;
-import paulmossman.csv.y2025.CsvAllRegistrants;
-
 public class Registration {
 
    private final String cartNumber;
@@ -36,6 +34,27 @@ public class Registration {
 
    public List<TmpBaseCsvRow> getMembers() {
       return members;
+   }
+
+   public List<TmpBaseCsvRow> getAdultMembers() {
+      return members.stream().filter(TmpBaseCsvRow::isAdult).collect(Collectors.toList());
+   }
+
+   public boolean hasKeelboat() {
+      return members.stream().anyMatch(TmpBaseCsvRow::isMooringTypeKeelboat);
+   }
+
+   public List<TmpBaseCsvRow> getKeelboatMembers() {
+      return members.stream().filter(TmpBaseCsvRow::isMooringTypeKeelboat).collect(Collectors.toList());
+   }
+
+   public TmpBaseCsvRow getOnlyKeelboatMember() {
+      List<TmpBaseCsvRow> keelboatMembers = getKeelboatMembers();
+      if (keelboatMembers.size() != 1) {
+         throw new IllegalStateException(
+               "Expected exactly 1 keelboat row for cart " + cartNumber + ", but found " + keelboatMembers.size());
+      }
+      return keelboatMembers.get(0);
    }
 
    @Override
@@ -66,10 +85,7 @@ public class Registration {
    }
 
    public List<String> getAdultEmails() {
-      return members.stream()
-            .filter(TmpBaseCsvRow::isAdult)
-            .map(TmpBaseCsvRow::getEmail)
-            .collect(Collectors.toList());
+      return getAdultMembers().stream().map(TmpBaseCsvRow::getEmail).collect(Collectors.toList());
    }
 
    public static List<Registration> getRegistrationsFromMemberRows(List<? extends TmpBaseCsvRow> rows) {
@@ -85,7 +101,7 @@ public class Registration {
       return Registration.getRegistrationsFromMemberRows(yearMembersRows);
    }
 
-   public void addIfAdult(CsvAllRegistrants registrant) {
+   public void addIfAdult(TmpBaseCsvRow registrant) {
       if(registrant.isAdult()) {
          members.add(registrant);
       }

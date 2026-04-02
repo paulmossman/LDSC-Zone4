@@ -37,7 +37,7 @@ public abstract class BaseDoneTracker<T extends BaseDoneTracker<T>> {
 
       List<? extends TmpBaseCsvRow> filteredRelevantRegistrantRows = filterRelevantRegistrantRows(allRegistrantRows);
 
-      optionalWriteOtherAll(filteredRelevantRegistrantRows, dataDir);
+      optionalWriteOtherAll(filteredRelevantRegistrantRows, allRegistrantRows, dataDir);
 
       // All the emails that have already been done.
       Set<String> doneEmails = loadFromDoneCsv(dataDir)
@@ -85,6 +85,11 @@ public abstract class BaseDoneTracker<T extends BaseDoneTracker<T>> {
 
    protected void optionalWriteOtherAll(List<? extends TmpBaseCsvRow> all, String dataDir) throws IOException {
       // No by default, though subclasses can override.
+   }
+
+   protected void optionalWriteOtherAll(List<? extends TmpBaseCsvRow> filteredRelevantRegistrantRows,
+         List<? extends TmpBaseCsvRow> allRegistrantRows, String dataDir) throws IOException {
+      optionalWriteOtherAll(filteredRelevantRegistrantRows, dataDir);
    }
 
    protected abstract StatefulBeanToCsvBuilder<? extends BaseDoneTracker<T>> pwm2_getStatefulBeanToCsvBuilder(

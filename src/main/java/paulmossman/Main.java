@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import paulmossman.deltas.Delta;
-import paulmossman.deltas.Registration;
+import paulmossman.registration.Registration;
 import paulmossman.csv.base.TmpBaseCsvRow;
 import paulmossman.csv_output.CsvClubBoatList;
 import paulmossman.csv_output.CsvKeelboatList;

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import paulmossman.Util;
 import paulmossman.csv.base.TmpBaseCsvRow;
+import paulmossman.registration.Registration;
 
 public class Delta {
 

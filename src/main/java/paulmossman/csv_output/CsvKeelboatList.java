@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import paulmossman.Util;
 import paulmossman.csv.base.TmpBaseCsvRow;
+import paulmossman.registration.Registration;
 
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.StatefulBeanToCsv;
@@ -90,11 +92,15 @@ public class CsvKeelboatList extends BaseDoneTracker<CsvKeelboatList> {
    @Override
    protected List<? extends TmpBaseCsvRow> filterRelevantRegistrantRows(
          List<? extends TmpBaseCsvRow> allRegistrantRows) {
-      return Util.getMooringTypeKeelboatRows(allRegistrantRows);
+      return Registration.getRegistrationsFromMemberRows(allRegistrantRows).stream()
+            .filter(Registration::hasKeelboat)
+            .flatMap(registration -> registration.getAdultMembers().stream())
+            .collect(Collectors.toList());
    }
 
    @Override
-   protected void optionalWriteOtherAll(List<? extends TmpBaseCsvRow> all, String dataDir) throws IOException {
+   protected void optionalWriteOtherAll(List<? extends TmpBaseCsvRow> all, List<? extends TmpBaseCsvRow> allRegistrantRows,
+         String dataDir) throws IOException {
 
       // PWM - is this required for Keelboats??? I think only required for
       // "duplicates"...
@@ -117,17 +123,15 @@ public class CsvKeelboatList extends BaseDoneTracker<CsvKeelboatList> {
 
       writer.write("\n");
       writer.write("Keelboat details:\n");
-      for (TmpBaseCsvRow member : all) {
-
-
-         // @formatter:off
-         writer.write(" - " 
-            + member.getEmail()
-            + " (" + member.getFullName() + ") "
-            + member.getBoatType() + " "
-            + member.getBoatTypeOther()
-            + "\n");
-         // @formatter:on
+      for (Registration registration : Registration.getRegistrationsFromMemberRows(allRegistrantRows).stream()
+            .filter(Registration::hasKeelboat)
+            .collect(Collectors.toList())) {
+         TmpBaseCsvRow keelboat = registration.getOnlyKeelboatMember();
+         String boatDescription = (keelboat.getBoatType() + " " + keelboat.getBoatTypeOther()).trim();
+         writer.write(" - " + boatDescription + " (Cart #: " + registration.getCartNumber() + ")\n");
+         for (TmpBaseCsvRow member : registration.getAdultMembers()) {
+            writer.write("   - " + member.getFullName() + " (" + member.getEmail() + ")\n");
+         }
       }
       writer.close();
 

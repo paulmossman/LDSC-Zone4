@@ -15,6 +15,7 @@ import paulmossman.Util;
 import paulmossman.csv.base.CsvRow2025toFuture;
 import paulmossman.csv.base.TmpBaseCsvRow;
 import paulmossman.csv.y2025.CsvAllRegistrants;
+import paulmossman.registration.Registration;
 import org.junit.jupiter.api.Test;
 
 public class DeltaTest {

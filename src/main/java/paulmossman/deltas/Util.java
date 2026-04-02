@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import paulmossman.csv.base.TmpBaseCsvRow;
+import paulmossman.registration.Registration;
 
 public class Util {
    

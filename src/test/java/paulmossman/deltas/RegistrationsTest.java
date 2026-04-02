@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import paulmossman.csv.base.CsvRow2025toFuture;
 import paulmossman.csv.y2025.CsvAllRegistrants;
-import paulmossman.deltas.Registration;
+import paulmossman.registration.Registration;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;

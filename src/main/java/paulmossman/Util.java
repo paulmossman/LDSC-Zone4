@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 
 import paulmossman.csv.base.TmpBaseCsvRow;
 import paulmossman.deltas.Delta;
-import paulmossman.deltas.Registration;
+import paulmossman.registration.Registration;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;

@@ -3,6 +3,8 @@ package paulmossman.deltas;
 import java.util.ArrayList;
 import java.util.List;
 
+import paulmossman.registration.Registration;
+
 // All registrations for one season.
 public class AllRegistrations {
     
