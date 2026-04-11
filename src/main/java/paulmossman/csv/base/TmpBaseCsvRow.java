@@ -267,7 +267,7 @@ public abstract class TmpBaseCsvRow extends BaseCsvRow {
    public boolean isNewFullMember() {
       // Some new Young Adult members choose to pay the Initiation Fee,
       // even though they don't have to yet.  Exclude those.
-      return isFullPriviledge() && isFirstHalfInitiationPayment();
+      return isFullPriviledge() && ( isFirstHalfInitiationPayment() || joinedThisYear());
    }
 
    public boolean isLateFee() {
@@ -286,7 +286,7 @@ public abstract class TmpBaseCsvRow extends BaseCsvRow {
 
       // New Crew members could choose to pay the Initiation Fee,
       // even though they don't have to yet.
-      return isNewCrewLateFeeExemption() || isFirstHalfInitiationPayment();
+      return isNewCrewLateFeeExemption() || isFirstHalfInitiationPayment() || joinedThisYear();
    }
 
    public boolean isNewYoungAdultLateFeeExemption() {
@@ -299,13 +299,17 @@ public abstract class TmpBaseCsvRow extends BaseCsvRow {
          return false;
       }
 
-      // New Young Adult members could choose to pay the Initiation Fee,
-      // even though they don't have to yet.
-      return isNewYoungAdultLateFeeExemption() || isFirstHalfInitiationPayment();
+      // Before April 2026, a new Young Adult member could choose to pay the Initiation Fee, even though they don't have to until becoming a Full member.
+      return isNewYoungAdultLateFeeExemption() || isFirstHalfInitiationPayment() || joinedThisYear();
    }
 
    public boolean isFirstHalfInitiationPayment() {
       return isZone4BooleanTrue(getFirstHalfInitiationPayment());
+   }
+
+   private boolean joinedThisYear() {
+      // This is an optional field, and not everyone fills it in. But it's still useful for identifying new non-FUll members that join before the Returning Member Late Fee goes into effect.
+      return getYearJoined().compareTo(simple_getYearString()) == 0;
    }
 
    // Any eligible type (Full, Young Adult, or Crew)
