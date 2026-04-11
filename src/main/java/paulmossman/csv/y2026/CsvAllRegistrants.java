@@ -60,69 +60,72 @@ public class CsvAllRegistrants extends CsvRow2025toFuture {
    private String newYoungAdultLateFeeExemption;
 
    @CsvBindByPosition(position = 29)
+   private String newFullLateFeeExemption;
+
+   @CsvBindByPosition(position = 31)
    private String lateFee;
 
-   @CsvBindByPosition(position = 34)
+   @CsvBindByPosition(position = 36)
    private String name;
 
-   @CsvBindByPosition(position = 36)
+   @CsvBindByPosition(position = 38)
    private String firstName;
 
-   @CsvBindByPosition(position = 38)
+   @CsvBindByPosition(position = 40)
    private String lastName;
 
-   @CsvBindByPosition(position = 39)
+   @CsvBindByPosition(position = 41)
    private String email;
 
-   @CsvBindByPosition(position = 40)
+   @CsvBindByPosition(position = 42)
    private String ageGroup;
 
-   @CsvBindByPosition(position = 41)
+   @CsvBindByPosition(position = 43)
    private String yearJoined;
 
-   @CsvBindByPosition(position = 49)
+   @CsvBindByPosition(position = 51)
    private String mooringType;
 
-   @CsvBindByPosition(position = 50)
+   @CsvBindByPosition(position = 52)
    private String boatType;
 
-   @CsvBindByPosition(position = 51)
+   @CsvBindByPosition(position = 53)
    private String boatTypeOther;
 
-   @CsvBindByPosition(position = 54)
+   @CsvBindByPosition(position = 56)
    private String stickerNumber;
    
-   @CsvBindByPosition(position = 55)
+   @CsvBindByPosition(position = 57)
    private String rawQuestionAdultSailTraining;
 
-   @CsvBindByPosition(position = 56)
+   @CsvBindByPosition(position = 58)
    private String rawQuestionAdultSailRacing;
 
-   @CsvBindByPosition(position = 57)
+   @CsvBindByPosition(position = 59)
    private String rawQuestionYouthSailTraining;
 
-   @CsvBindByPosition(position = 58)
+   @CsvBindByPosition(position = 60)
    private String rawQuestionJuniorSailRacing;
 
-   @CsvBindByPosition(position = 59)
+   @CsvBindByPosition(position = 61)
    private String rawQuestionRacingThisYear;
 
-   @CsvBindByPosition(position = 60)
+   @CsvBindByPosition(position = 62)
    private String rawQuestionServeBoardOfDirectors;
 
-   @CsvBindByPosition(position = 61)
+   @CsvBindByPosition(position = 63)
    private String rawQuestionMentorNewerSailor;
 
-   @CsvBindByPosition(position = 62)
+   @CsvBindByPosition(position = 64)
    private String rawQuestionCarpentryOrBuildingMaintenanceSkill;
 
-   @CsvBindByPosition(position = 63)
+   @CsvBindByPosition(position = 65)
    private String rawQuestionBoatRepairExperience;
 
-   @CsvBindByPosition(position = 64)
+   @CsvBindByPosition(position = 66)
    private String rawQuestionRunOnWaterEvent;
 
-   @CsvBindByPosition(position = 65)
+   @CsvBindByPosition(position = 67)
    private String rawQuestionRunSocialEvent;
 
    @Override
