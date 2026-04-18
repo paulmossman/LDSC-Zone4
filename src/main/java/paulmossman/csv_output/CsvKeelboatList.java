@@ -139,7 +139,7 @@ public class CsvKeelboatList extends BaseDoneTracker<CsvKeelboatList> {
 
    protected void optionalWriteOtherTodos(ArrayList<BaseDoneTracker<CsvKeelboatList>> todoPwms, String dataDir)
          throws IOException {
-      System.out.println("New Keelboats to notify the Wet Harbourmaster about: " + todoPwms.size());
+      System.out.println("New Keelboat members to notify the Wet Harbourmaster about: " + todoPwms.size());
    }
 
 }
