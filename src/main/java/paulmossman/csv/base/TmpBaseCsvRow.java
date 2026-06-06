@@ -87,9 +87,13 @@ public abstract class TmpBaseCsvRow extends BaseCsvRow {
 
    public boolean isFullPriviledge() {
       String fullString = "Full";
-      if (getYear() <= 2021) {
+      if (getYear() == 2021) {
          fullString = "Family";
       }
+      else if (getYear() <= 2020) {
+         fullString = "Senior & family members";
+      }
+
       return getMembershipPrivilege().equals(fullString);
    }
 
@@ -350,12 +354,5 @@ public abstract class TmpBaseCsvRow extends BaseCsvRow {
    public abstract List<TmpBaseCsvRow> loadFromCsv() throws IOException;
 
    public abstract TmpBaseCsvRow objectGet();
-
-   public static TmpBaseCsvRow get() {
-      // PWM fix .....
-      // String pwm =
-     
-      return null; // CsvAllRegistrants.builder().build();
-   }
 }
 
