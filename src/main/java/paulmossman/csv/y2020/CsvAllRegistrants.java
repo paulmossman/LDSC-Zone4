@@ -20,7 +20,7 @@ import lombok.Setter;
 public class CsvAllRegistrants extends CsvRow2000to2024 {
 
    public CsvAllRegistrants() {
-      this.year = 2021;
+      this.year = 2020;
    }
 
    public static CsvAllRegistrants get() {
