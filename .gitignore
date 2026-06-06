@@ -1,6 +1,7 @@
 # Application configuration, etc
 app.config
-Zone4-data-*
+Zone4-data*
+20*
 
 # VSCode
 .vscode
